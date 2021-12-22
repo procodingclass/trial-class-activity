@@ -1,47 +1,59 @@
 class Game {
   constructor() {}
   setupEngine() {
-    var engine = Engine.create();
-    Engine.run(engine);
+    var engine = Matter.Engine.create();
+    Matter.Engine.run(engine);
     return engine;
   }
-  setupRender() {
-    var render = Render.create({
+  setupRender(background) {
+    var render = Matter.Render.create({
       element: document.body,
       engine: engine,
       options: {
-        width: 800,
+        width: 980,
         height: 600,
         wireframes: false,
-        background: "url(https://i.imgur.com/LWwkqvS.png)"
+        background: `url(${background})`
       }
     });
-    Render.run(render);
+    Matter.Render.run(render);
     return render;
   }
 
   createMouse() {
-    var mouse = Mouse.create(render.canvas);
-    var mouseConstraint = MouseConstraint.create(engine, {
+    var mouse = Matter.Mouse.create(render.canvas);
+    var mouseConstraint = Matter.MouseConstraint.create(engine, {
       mouse: mouse
     });
-    World.add(world, mouseConstraint);
+    Matter.World.add(world, mouseConstraint);
     // keep the mouse in sync with rendering
     render.mouse = mouse;
     return mouseConstraint;
   }
 
   createFloor() {
-    var floor = Bodies.rectangle(400, 580, 800, 40, {
+    var floor = Matter.Bodies.rectangle(400, 580, 1200, 40, {
       isStatic: true,
       render: {
         sprite: {
           texture: "https://i.imgur.com/lG587fv.png",
           yScale: 40 / 70,
-          xScale: 800 / 70
+          xScale: 1200 / 70
         }
       }
     });
-    World.add(world, floor);
+    Matter.World.add(world, floor);
+  }
+
+  setupBirdAndBoxCollision() {
+    Matter.Events.on(engine, "collisionStart", event => {
+      event.pairs
+        .filter(pair => {
+          return birdObj.detectBirdAndBoxCollision(pair);
+        })
+        .forEach(pair => {
+          birdObj.onBirdAndBoxCollision(pair);
+        });
+    });
   }
 }

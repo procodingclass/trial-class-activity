@@ -1,7 +1,7 @@
 class Bird {
   constructor() {}
   create(x, y) {
-    var bird = Bodies.circle(x, y, 10, {
+    var bird = Matter.Bodies.circle(x, y, 10, {
       mass: 10,
       label: "bird",
       render: {
@@ -25,13 +25,13 @@ class Bird {
 
   onBirdAndBoxCollision(pair) {
     if (pair.bodyB.label === "bird") {
-      World.remove(world, pair.bodyB);
-      Body.applyForce(pair.bodyB, pair.bodyB.position, pair.bodyA.force);
+      Matter.World.remove(world, pair.bodyB);
+      Matter.Body.applyForce(pair.bodyB, pair.bodyB.position, pair.bodyA.force);
     }
 
     if (pair.bodyA.label === "bird") {
-      World.remove(world, pair.bodyA);
-      Body.applyForce(pair.bodyB, pair.bodyA.position, pair.bodyA.force);
+      Matter.World.remove(world, pair.bodyA);
+      Matter.Body.applyForce(pair.bodyB, pair.bodyA.position, pair.bodyA.force);
     }
   }
 }

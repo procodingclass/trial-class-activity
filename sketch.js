@@ -1,28 +1,6 @@
-var Engine = Matter.Engine;
-var Render = Matter.Render;
-var Bodies = Matter.Bodies;
-var Body = Matter.Body;
-var Mouse = Matter.Mouse;
-var MouseConstraint = Matter.MouseConstraint;
-var Events = Matter.Events;
-var Composites = Matter.Composites;
-var Constraint = Matter.Constraint;
-var World = Matter.World;
-
-function setupBirdAndBoxCollision() {
-  Events.on(engine, "collisionStart", event => {
-    event.pairs
-      .filter(pair => {
-        return birdObj.detectBirdAndBoxCollision(pair);
-      })
-      .forEach(pair => {
-        birdObj.onBirdAndBoxCollision(pair);
-      });
-  });
-}
-
-function createEnemy(x, y, scale = 0.5) {
-  var enemy = Bodies.rectangle(x, y, 70 * scale, 70 * scale, {
+function createEnemy(x, y) {
+  var scale = 0.5;
+  var enemy = Matter.Bodies.rectangle(x, y, 70 * scale, 70 * scale, {
     render: {
       sprite: {
         texture: "https://imgur.com/3pxNMk6.png",
@@ -32,7 +10,7 @@ function createEnemy(x, y, scale = 0.5) {
     },
     label: "enemy"
   });
-  World.add(world, enemy);
+  Matter.World.add(world, enemy);
 }
 
 function createEnemyHouse(x, y) {
@@ -46,12 +24,13 @@ function createEnemyInTheHouse(x, y) {
   createEnemyHouse(x, y);
 }
 
-// NOTE: Don't change the varibale sequence
+// NOTE: Don't change the variable sequence
 
 var game = new Game();
-
+var backgroundUrl =
+  "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80";
 var engine = game.setupEngine();
-var render = game.setupRender();
+var render = game.setupRender(backgroundUrl);
 var world = engine.world;
 
 var mouseConstraint = game.createMouse();
@@ -60,10 +39,10 @@ var birdObj = new Bird();
 var woodenBlock = new Box();
 var slingshot = new Slingshot();
 
-setupBirdAndBoxCollision();
+game.setupBirdAndBoxCollision();
 
 game.createFloor();
-slingshot.create(120, 500);
+slingshot.create(200, 400);
 
 createEnemyInTheHouse(650, 500);
 createEnemyInTheHouse(650, 350);
