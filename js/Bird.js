@@ -1,20 +1,22 @@
 class Bird {
-  constructor() {}
-  create(x, y) {
+  constructor(birdImg) {
+    this.birdImg = birdImg;
+  }
+
+  create = (x, y) => {
     var bird = Matter.Bodies.circle(x, y, 10, {
       mass: 10,
       label: "bird",
       render: {
         sprite: {
-          texture:
-            "https://raw.githubusercontent.com/procodingclass/trial-class-activity/main/assets/bird.png",
+          texture: this.birdImg,
           xScale: 1 / 3.5,
           yScale: 1 / 3.5
         }
       }
     });
     return bird;
-  }
+  };
 
   detectBirdAndBoxCollision(pair) {
     var condition1 = pair.bodyA.label === "bird" && pair.bodyB.label === "box";

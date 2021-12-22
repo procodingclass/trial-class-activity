@@ -1,5 +1,18 @@
 class Game {
   constructor() {}
+
+  enemy(enemyImg, scale) {
+    return {
+      render: {
+        sprite: {
+          texture: enemyImg,
+          xScale: scale,
+          yScale: scale
+        }
+      },
+      label: "enemy"
+    };
+  }
   setupEngine() {
     var engine = Matter.Engine.create();
     Matter.Engine.run(engine);
