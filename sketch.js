@@ -3,7 +3,8 @@ function createEnemy(x, y) {
   var enemy = Matter.Bodies.rectangle(x, y, 70 * scale, 70 * scale, {
     render: {
       sprite: {
-        texture: "https://imgur.com/3pxNMk6.png",
+        texture:
+          "https://raw.githubusercontent.com/procodingclass/trial-class-activity/main/assets/enemy.png",
         xScale: scale,
         yScale: scale
       }
@@ -27,8 +28,8 @@ function createEnemyInTheHouse(x, y) {
 // NOTE: Don't change the variable sequence
 
 var game = new Game();
-var backgroundUrl =
-  "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80";
+var backgroundUrl = "https://raw.githubusercontent.com/procodingclass/trial-class-activity/main/assets/background.png";
+
 var engine = game.setupEngine();
 var render = game.setupRender(backgroundUrl);
 var world = engine.world;
