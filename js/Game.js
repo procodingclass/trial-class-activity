@@ -41,6 +41,12 @@ class Game {
     Matter.World.add(world, mouseConstraint);
     // keep the mouse in sync with rendering
     render.mouse = mouse;
+
+    Matter.Events.on(mouseConstraint, "mousedown", function(event) {
+      console.log("X: ", mouse.position.x, " Y: ", mouse.position.y);
+      console.log();
+    });
+
     return mouseConstraint;
   }
 
