@@ -55,7 +55,7 @@ class Game {
       isStatic: true,
       render: {
         sprite: {
-          texture: "https://i.imgur.com/lG587fv.png",
+          texture: "./assets/ground.png",
           yScale: 40 / 70,
           xScale: 1200 / 70
         }

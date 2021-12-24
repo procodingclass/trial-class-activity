@@ -1,6 +1,6 @@
 // NOTE: Don't change the variable sequence
 var game = new Game();
-var backgroundImg = "./assets/background.png";
+var backgroundImg = "./assets/background2.png";
 
 var engine = game.setupEngine();
 var render = game.setupRender(backgroundImg);
@@ -8,7 +8,7 @@ var world = engine.world;
 
 var mouseConstraint = game.createMouse();
 
-var birdImg = "./assets/bird.png";
+var birdImg = "./assets/bird1.png";
 
 var birdObj = new Bird(birdImg);
 var woodenBlock = new Box();
@@ -21,7 +21,7 @@ slingshot.create(200, 400);
 
 function createEnemy(x, y) {
   var scale = 0.5;
-  var enemyImg = "./assets/enemy.png";
+  var enemyImg = "./assets/enemy1.png";
   var render = game.enemy(enemyImg, scale);
   var enemy = Matter.Bodies.rectangle(x, y, 70 * scale, 70 * scale, render);
   Matter.World.add(world, enemy);

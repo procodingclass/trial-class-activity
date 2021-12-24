@@ -5,13 +5,13 @@ class Box {
     const box = Matter.Bodies.rectangle(x, y, 70 * scale, 220 * scale, {
       render: {
         sprite: {
-          texture:
-            "https://raw.githubusercontent.com/procodingclass/trial-class-activity/main/assets/wood.png",
+          texture: "./assets/wood.png",
           xScale: scale,
           yScale: scale
         }
       },
-      label: "box"
+      label: "box",
+      friction: 0.3
     });
     Matter.World.add(world, box);
     return box;
@@ -21,13 +21,13 @@ class Box {
     const box = Matter.Bodies.rectangle(x, y, 220 * scale, 70 * scale, {
       render: {
         sprite: {
-          texture:
-            "https://raw.githubusercontent.com/procodingclass/trial-class-activity/main/assets/wood2.png",
+          texture: "./assets/wood2.png",
           xScale: scale,
           yScale: scale
         }
       },
-      label: "box"
+      label: "box",
+      friction: 0.3
     });
     Matter.World.add(world, box);
     return box;

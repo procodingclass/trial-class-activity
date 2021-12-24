@@ -10,8 +10,8 @@ class Bird {
       render: {
         sprite: {
           texture: this.birdImg,
-          xScale: 1 / 3.5,
-          yScale: 1 / 3.5
+          xScale: 0.02,
+          yScale: 0.02
         }
       }
     });
